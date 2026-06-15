@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaurav Verma | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --text-muted: #8b949e;
+      --text-bright: #e6edf3;
+      --blue: #58a6ff;
+      --green: #3fb950;
+      --purple: #bc8cff;
+      --amber: #e3b341;
+      --red: #f85149;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      color: var(--blue);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(88,166,255,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(188,140,255,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .terminal-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      margin-bottom: 24px;
+      width: fit-content;
+    }
+
+    .terminal-tag::before {
+      content: '●';
+      color: var(--green);
+      font-size: 10px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 600;
+      color: var(--text-bright);
+      line-height: 1.1;
+      margin-bottom: 8px;
+      font-family: var(--font-sans);
+    }
+
+    .hero h1 span { color: var(--blue); }
+
+    .hero-role {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-role span { color: var(--purple); }
+
+    .badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .badge {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    .badge.blue { border-color: rgba(88,166,255,0.4); color: var(--blue); }
+    .badge.green { border-color: rgba(63,185,80,0.4); color: var(--green); }
+    .badge.purple { border-color: rgba(188,140,255,0.4); color: var(--purple); }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-sans);
+    }
+
+    .btn-primary { background: var(--green); color: #0d1117; }
+    .btn-primary:hover { background: #4bca5c; }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* SECTIONS */
+    section {
+      padding: 80px 48px;
+      border-top: 1px solid var(--bg3);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--green);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-bright);
+      margin-bottom: 40px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-text p span { color: var(--blue); font-weight: 500; }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--blue);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .project-card.blue::before { background: var(--blue); }
+    .project-card.green::before { background: var(--green); }
+    .project-card.amber::before { background: var(--amber); }
+
+    .project-card:hover { border-color: var(--blue); transform: translateY(-4px); }
+
+    .project-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    .project-name {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-bright);
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+    }
+
+    .skill-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    .skill-card:hover { border-color: var(--blue); }
+
+    .skill-icon {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .skill-name {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    /* CONTACT */
+    .contact-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .contact-box h3 {
+      font-size: 22px;
+      color: var(--text-bright);
+      margin-bottom: 10px;
+    }
+
+    .contact-box p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 28px;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .contact-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 48px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-family: var(--font-mono);
+    }
+
+    footer span { color: var(--blue); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 14px 24px; }
+      .nav-links { gap: 18px; }
+      .hero { padding: 100px 24px 60px; }
+      section { padding: 60px 24px; }
+      .about-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">&lt;gaurav /&gt;</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="terminal-tag">Available for internships</div>
+    <h1>Gaurav <span>Verma</span></h1>
+    <p class="hero-role">CSE Student &nbsp;|&nbsp; <span>Cybersecurity</span> &nbsp;+&nbsp; AI/ML</p>
+    <div class="badges">
+      <span class="badge blue">🔐 Cybersecurity</span>
+      <span class="badge green">🤖 AI / ML</span>
+      <span class="badge purple">🛠 Builder</span>
+      <span class="badge">📍 Lucknow, India</span>
+    </div>
+    <div class="hero-btns">
+      <a href="https://github.com/builds-with-gaurav" target="_blank" class="btn btn-primary">GitHub Profile</a>
+      <a href="https://www.linkedin.com/in/gauravvermatech/" target="_blank" class="btn btn-outline">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">// about me</div>
+    <div class="section-title">Who am I?</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <span>2nd year B.Tech CSE student</span> at ABES Engineering College, Ghaziabad, with a passion for cybersecurity and AI-driven development.</p>
+        <p>I build real projects — voice assistants, phishing detectors, weather apps — and I'm constantly learning and shipping things that solve actual problems.</p>
+        <p>Currently exploring <span>ethical hacking</span>, REST APIs, and machine learning while participating in hackathons and programs like <span>Amazon ML Summer School 2026</span>.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <span class="stat-num">3+</span>
+          <div class="stat-label">Projects Built</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">2028</span>
+          <div class="stat-label">Graduation Year</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">AI+</span>
+          <div class="stat-label">Security Focus</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">∞</span>
+          <div class="stat-label">Learning Mode</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">// projects</div>
+    <div class="section-title">Things I've built</div>
+    <div class="projects-grid">
+
+      <div class="project-card blue">
+        <div class="project-icon">🎙️</div>
+        <div class="project-name">JARVIS / Aria</div>
+        <div class="project-desc">Voice-activated AI assistant with speech recognition, Google Gemini integration, and AriaNeural TTS. Responds to real-time voice commands.</div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Gemini API</span>
+          <span class="tag">edge-tts</span>
+          <span class="tag">SpeechRecognition</span>
+        </div>
+      </div>
+
+      <div class="project-card green">
+        <div class="project-icon">🛡️</div>
+        <div class="project-name">Phishing Detector</div>
+        <div class="project-desc">Hybrid ML + LLM system that detects phishing emails using TF-IDF, Naive Bayes classifier and Groq API (LLaMA 3.3-70B) for deep analysis.</div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">Groq API</span>
+          <span class="tag">NLP</span>
+        </div>
+      </div>
+
+      <div class="project-card amber">
+        <div class="project-icon">🌤️</div>
+        <div class="project-name">Skycast</div>
+        <div class="project-desc">Weather web app with dynamic backgrounds, live clock, °C/°F toggle, and extended location support for Indian states and world countries.</div>
+        <div class="project-tags">
+          <span class="tag">HTML/CSS/JS</span>
+          <span class="tag">OpenWeatherMap</span>
+          <span class="tag">REST API</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">// skills</div>
+    <div class="section-title">What I work with</div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-icon">🔐</div><div class="skill-name">Cybersecurity</div></div>
+      <div class="skill-card"><div class="skill-icon">🐍</div><div class="skill-name">Python</div></div>
+      <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">AI / ML</div></div>
+      <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">Web Dev</div></div>
+      <div class="skill-card"><div class="skill-icon">🗄️</div><div class="skill-name">SQL</div></div>
+      <div class="skill-card"><div class="skill-icon">🔌</div><div class="skill-name">REST APIs</div></div>
+      <div class="skill-card"><div class="skill-icon">🐧</div><div class="skill-name">Linux</div></div>
+      <div class="skill-card"><div class="skill-icon">🔍</div><div class="skill-name">Recon & OSINT</div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">// contact</div>
+    <div class="section-title">Let's connect</div>
+    <div class="contact-box">
+      <h3>Open to internships & collaborations</h3>
+      <p>Whether it's a project, an internship opportunity, or just a conversation about tech — feel free to reach out.</p>
+      <div class="contact-links">
+        <a href="https://github.com/builds-with-gaurav" target="_blank" class="contact-btn">⬡ GitHub</a>
+        <a href="https://www.linkedin.com/in/gauravvermatech/" target="_blank" class="contact-btn">in LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built by <span>Gaurav Verma</span> • ABES Engineering College • 2024–2028</p>
+  </footer>
+
+</body>
+</html>
